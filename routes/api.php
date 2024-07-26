@@ -4,9 +4,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\SolarPanelController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController;
+
 use App\Http\Controllers\AuthController;
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +48,32 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('solar-panel/get-solar-panel/{id}', [SolarPanelController::class, 'show']);
     Route::put('solar-panel/update-solar-panel/{id}', [SolarPanelController::class, 'update']);
     Route::delete('solar-panel/delete-solar-panel/{id}', [SolarPanelController::class, 'delete']);
+
+    Route::get('products', [ProductController::class, 'index']);
+    Route::POST('products/create', [ProductController::class, 'create']);
+    Route::get('products/get-product/{id}', [ProductController::class, 'show']);
+    Route::put('products/update-product/{id}', [ProductController::class, 'update']);
+    Route::delete('products/delete-product/{id}', [ProductController::class, 'delete']);
+    Route::get('products/getProducts', [ProductController::class, 'getProducts']);
+
+    Route::get('customers', [CustomerController::class, 'index']);
+    Route::POST('customers/create', [CustomerController::class, 'create']);
+    Route::get('customers/get-customer/{id}', [CustomerController::class, 'show']);
+    Route::put('customers/update-customer/{id}', [CustomerController::class, 'update']);
+    Route::delete('customers/delete-customer/{id}', [CustomerController::class, 'delete']);
+
+    Route::get('orders', [OrderController::class, 'index']);
+    Route::POST('orders/create', [OrderController::class, 'create']);
+    Route::get('orders/get-order/{id}', [OrderController::class, 'show']);
+    Route::put('orders/update-order/{id}', [OrderController::class, 'update']);
+    Route::delete('orders/delete-order/{id}', [OrderController::class, 'delete']);
+
+    Route::get('order-items', [OrderItemController::class, 'index']);
+    Route::POST('order-items/create', [OrderItemController::class, 'create']);
+    Route::get('order-items/get-order-item/{id}', [OrderItemController::class, 'show']);
+    Route::put('order-items/update-order-item/{id}', [OrderItemController::class, 'update']);
+    Route::delete('order-items/delete-order-item/{id}', [OrderItemController::class, 'delete']);
+
 });
 
 });

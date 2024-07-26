@@ -5,7 +5,7 @@ use App\Models\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Product extends Model
 {
     use HasFactory, HasUuid;
     protected $primaryKey = 'id';
@@ -13,14 +13,18 @@ class Category extends Model
     public $incrementing = false;
     protected $fillable = [
         'name',
+        'description',
+        'category_id',
+        'price',
+        'model'
     ];
 
-    public function solar_panels()
+    public function category()
     {
-        return $this->hasMany(SolarPanel::class);
+        return $this->belongsTo(Category::class);
     }
-    public function products()
+        public function orderItems()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(OrderItem::class);
     }
 }
